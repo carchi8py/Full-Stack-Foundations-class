@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from puppies import Base, Shelter, Puppy
+from pprint import pprint
 
 import datetime
 
@@ -27,3 +28,7 @@ for puppy in puppies:
 	print puppy.name
 	print puppy.weight
 	print "\n"
+
+puppies = session.query(Puppy).order_by(Puppy.shelter_id).all()
+for puppy in puppies:
+	print puppy.name, puppy.shelter.name
